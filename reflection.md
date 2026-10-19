@@ -2,14 +2,10 @@
 
 ## 1. System Design
 
-**a. Initial design**
-
-- Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
+Brainstorm:
 
 The user should be able to add a pet and information about the pet. Then the user should be able to add tasks for the pet to be completed. Then the program should be able to display the information of the pet along with the tasks set to be completed.
 
-Brainstorm:
 Pet object. Contains The type of animal, the name of the pet, the age, and the name of the owner of the pet.
 
 Task object. Contains the name of the task, the duration of the task, the importance of the task, and the status of the task (completed/incomplete).
@@ -19,10 +15,22 @@ Each object should be able to return a organized view of all the information, vi
 
 There can be another class for the schedule that contains a list of tasks.
 
+
+**a. Initial design**
+
+- Briefly describe your initial UML design.
+- What classes did you include, and what responsibilities did you assign to each?
+
+My initial design just included classes for the pet, the task, and the schedule to be created. The pet would've contained info like name, age, species, owner. The task class would've contained info like the name of the task, description, priority, and duration of the task. Lastly the class for the schedule wasn't well designed, I thought it would contain the list of tasks for a pet.
+
 **b. Design changes**
 
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
+
+Yes, with the help of the AI assistant I was able to better define each class and their relationships as well as other classes that would make the code cleaner and the relationships easier to work with. The overall class would be a scheduler that creates a schedule from already existing classes and information, then there would be an owner who has a pet who has a task, and each task uses enumeration to define the priority of the task. The overall scheduler class creates a daily plan class which looks at the task class and each tasks priority and duration.
+
+This version of the UML came after the initial creation of the UML with some unecessary information trimmed out of some of the classes. This is to make the code less cluttered and make everything have a purpose for existing.
 
 ---
 

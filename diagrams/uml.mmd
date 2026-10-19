@@ -1,11 +1,13 @@
 classDiagram
-    %% Legend: fields typed Optional~T~ are optional (may be None); all other fields are required.
+    %% Legend: fields typed Optional~T~ are optional (may be None); all other fields are required
+    %% (fields with a default value, such as priority, can be omitted when constructing).
 
     class Owner {
         +str name
         +int available_minutes_per_day
         +list~Pet~ pets
         +add_pet(pet) void
+        +get_all_tasks() list~Task~
     }
 
     class Pet {
@@ -24,6 +26,7 @@ classDiagram
         +int duration_minutes
         +Priority priority
         +bool is_completed
+        +str pet_name
         +mark_complete() void
     }
 
