@@ -7,6 +7,18 @@
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
 
+The user should be able to add a pet and information about the pet. Then the user should be able to add tasks for the pet to be completed. Then the program should be able to display the information of the pet along with the tasks set to be completed.
+
+Brainstorm:
+Pet object. Contains The type of animal, the name of the pet, the age, and the name of the owner of the pet.
+
+Task object. Contains the name of the task, the duration of the task, the importance of the task, and the status of the task (completed/incomplete).
+- function for marking the status of the task as complete.
+
+Each object should be able to return a organized view of all the information, via a toString function. Each object should have getter and setter functions.
+
+There can be another class for the schedule that contains a list of tasks.
+
 **b. Design changes**
 
 - Did your design change during implementation?

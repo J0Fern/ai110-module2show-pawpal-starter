@@ -1,15 +1,78 @@
 classDiagram
-    %% Replace the placeholders below with your actual classes, attributes, methods, and relationships.
-    %% Keep this file updated so it matches your final implementation.
-
-    class ClassName {
-        +type attribute
-        +method() returnType
+    class Owner {
+        +str name
+        +str email
+        +int available_minutes_per_day
+        +list~Pet~ pets
+        +add_pet(pet) void
+        +remove_pet(pet_id) void
+        +get_all_tasks() list~Task~
     }
 
-    class AnotherClass {
-        +type attribute
-        +method() returnType
+    class Pet {
+        +str pet_id
+        +str name
+        +str species
+        +int age
+        +str notes
+        +Owner owner
+        +list~Task~ tasks
+        +add_task(task) void
+        +edit_task(task_id, **changes) void
+        +remove_task(task_id) void
+        +get_pending_tasks() list~Task~
     }
 
-    ClassName --> AnotherClass : relationship
+    class Task {
+        +str task_id
+        +str title
+        +int duration_minutes
+        +Priority priority
+        +str preferred_time
+        +bool is_completed
+        +update(**changes) void
+        +mark_complete() void
+    }
+
+    class Priority {
+        <<enumeration>>
+        LOW
+        MEDIUM
+        HIGH
+    }
+
+    class Scheduler {
+        +Owner owner
+        +int day_start_minute
+        +int day_end_minute
+        +generate_plan(date) DailyPlan
+        +sort_tasks(tasks) list~Task~
+        +fits_in_budget(task, remaining_minutes) bool
+    }
+
+    class DailyPlan {
+        +date date
+        +list~ScheduledItem~ items
+        +list~Task~ skipped_tasks
+        +int total_minutes
+        +add_item(item) void
+        +explain() str
+        +to_table() list~dict~
+    }
+
+    class ScheduledItem {
+        +Task task
+        +Pet pet
+        +int start_minute
+        +int end_minute
+        +str reason
+    }
+
+    Owner "1" o-- "*" Pet : has
+    Pet "1" o-- "*" Task : has
+    Task --> Priority : uses
+    Scheduler --> Owner : plans for
+    Scheduler ..> DailyPlan : creates
+    DailyPlan "1" *-- "*" ScheduledItem : contains
+    ScheduledItem --> Task : schedules
+    ScheduledItem --> Pet : for
